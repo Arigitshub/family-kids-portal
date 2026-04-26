@@ -1,0 +1,767 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Family Kids Portal</title>
+    <meta
+      name="description"
+      content="An offline-first, kid-safe family portal for learning, play, creativity, avatars, calm routines, local progress, offline wiki content, and map exploration."
+    />
+    <meta name="keywords" content="kids portal, offline learning, family app, safe internet for kids, homeschool, kids games, avatars, offline wiki, offline maps" />
+    <meta name="author" content="Family Kids Portal contributors" />
+    <meta name="robots" content="index, follow" />
+    <meta property="og:title" content="Family Kids Portal" />
+    <meta property="og:description" content="Offline-first kid-safe portal for families: create, learn, play, travel, calm, and explore." />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="assets/social-preview.svg" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="theme-color" content="#173f3d" />
+    <link rel="manifest" href="manifest.webmanifest" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="shell">
+      <aside class="sidebar" aria-label="Portal navigation">
+        <div class="brand">
+          <div class="brand-mark" aria-hidden="true">F</div>
+          <div>
+            <p>Family Portal</p>
+            <span>create, play, learn</span>
+          </div>
+        </div>
+
+        <section class="profile-card" aria-label="Current explorer">
+          <canvas id="miniAvatar" width="240" height="240" aria-label="Current avatar preview"></canvas>
+          <label for="profileSelect">Profile</label>
+          <select id="profileSelect"></select>
+          <label for="kidName">Explorer name</label>
+          <input id="kidName" type="text" maxlength="18" value="Ari" />
+          <div class="points">
+            <span id="sparkCount">0</span>
+            <small>healthy sparks</small>
+          </div>
+        </section>
+
+        <nav class="tabs" aria-label="Sections">
+          <button class="tab active" data-view="home">Home</button>
+          <button class="tab" data-view="avatar">Avatar</button>
+          <button class="tab" data-view="create">Create</button>
+          <button class="tab" data-view="learn">Learn</button>
+          <button class="tab" data-view="wiki">Wiki</button>
+          <button class="tab" data-view="play">Play</button>
+          <button class="tab" data-view="calm">Calm</button>
+          <button class="tab" data-view="space">Space</button>
+          <button class="tab" data-view="travel">Travel</button>
+          <button class="tab" data-view="projects">Projects</button>
+          <button class="tab" data-view="parent">Parent</button>
+        </nav>
+      </aside>
+
+      <section class="workspace">
+        <header class="topbar">
+          <div>
+            <p id="todayLabel">Today</p>
+            <h1 id="viewTitle">Home Base</h1>
+          </div>
+          <button id="calmMode" class="icon-button" type="button" aria-pressed="false" title="Calm mode">
+            <span aria-hidden="true">C</span>
+          </button>
+        </header>
+
+        <section id="home" class="view active" aria-labelledby="viewTitle">
+          <div class="hero">
+            <div>
+              <p class="eyebrow">Today&apos;s adventure</p>
+              <h2 id="welcomeTitle">Choose one good thing to do next.</h2>
+              <p class="hero-copy">
+                A kid-safe starting place for building, reading, moving, resting, and exploring.
+              </p>
+              <p id="familyMotto" class="family-motto"></p>
+              <div class="hero-actions">
+                <button class="primary-action" data-jump="create">Make something</button>
+                <button class="secondary-action" data-jump="space">Go to space</button>
+                <button class="secondary-action" data-jump="travel">Explore maps</button>
+              </div>
+            </div>
+            <div class="orbit" aria-label="Portal activity preview">
+              <div class="planet planet-create">Paint</div>
+              <div class="planet planet-learn">Read</div>
+              <div class="planet planet-play">Move</div>
+              <div class="planet planet-travel">Map</div>
+              <div class="planet planet-space">Space</div>
+            </div>
+          </div>
+
+          <div class="kid-compass">
+            <article class="compass-panel">
+              <div>
+                <p class="eyebrow">Kid Compass</p>
+                <h3>Today&apos;s balanced path</h3>
+              </div>
+              <div id="dailyPath" class="daily-path"></div>
+            </article>
+            <article class="compass-panel">
+              <div>
+                <p class="eyebrow">Progress</p>
+                <h3>Your portal garden</h3>
+              </div>
+              <div id="portalStats" class="portal-stats"></div>
+            </article>
+            <article class="compass-panel">
+              <div>
+                <p class="eyebrow">Badges</p>
+                <h3>Earned by doing</h3>
+              </div>
+              <div id="badgeShelf" class="badge-shelf"></div>
+            </article>
+          </div>
+
+          <div class="portal-zones" aria-label="Portal zones">
+            <button class="zone-card" data-jump="avatar" type="button">
+              <span>Avatar</span>
+              <strong>Build your explorer</strong>
+            </button>
+            <button class="zone-card" data-jump="create" type="button">
+              <span>Create</span>
+              <strong>Draw, make, imagine</strong>
+            </button>
+            <button class="zone-card" data-jump="learn" type="button">
+              <span>Learn</span>
+              <strong>Small curious quests</strong>
+            </button>
+            <button class="zone-card" data-jump="wiki" type="button">
+              <span>Wiki</span>
+              <strong>Offline kid-safe facts</strong>
+            </button>
+            <button class="zone-card" data-jump="play" type="button">
+              <span>Play</span>
+              <strong>Healthy real-world games</strong>
+            </button>
+            <button class="zone-card" data-jump="calm" type="button">
+              <span>Calm</span>
+              <strong>Breathe, feel, reset</strong>
+            </button>
+            <button class="zone-card" data-jump="space" type="button">
+              <span>Space</span>
+              <strong>Planets and stars</strong>
+            </button>
+            <button class="zone-card" data-jump="travel" type="button">
+              <span>Travel</span>
+              <strong>Offline map missions</strong>
+            </button>
+            <button class="zone-card" data-jump="projects" type="button">
+              <span>Projects</span>
+              <strong>Saved creations</strong>
+            </button>
+          </div>
+
+          <div class="section-grid">
+            <article class="task-panel">
+              <div>
+                <p class="eyebrow">Healthy loop</p>
+                <h3>Pick, do, earn a spark</h3>
+              </div>
+              <div id="healthyTasks" class="task-list"></div>
+            </article>
+
+            <article class="task-panel">
+              <div>
+                <p class="eyebrow">Family picks</p>
+                <h3>Safe places to visit</h3>
+              </div>
+              <div id="safeLinks" class="link-list"></div>
+            </article>
+          </div>
+        </section>
+
+        <section id="avatar" class="view" aria-labelledby="viewTitle">
+          <div class="tool-layout">
+            <div class="avatar-stage">
+              <canvas id="avatarCanvas" width="420" height="420" aria-label="Custom avatar"></canvas>
+            </div>
+            <div class="controls">
+              <h2>Avatar Builder</h2>
+              <label>Avatar name <input id="avatarName" type="text" maxlength="32" placeholder="Explorer outfit" /></label>
+              <label>Background <input id="avatarBgColor" type="color" value="#dbe9e1" /></label>
+              <label>Skin color <input id="skinColor" type="color" value="#c87954" /></label>
+              <label>Hair color <input id="hairColor" type="color" value="#2f241f" /></label>
+              <label>Eye color <input id="eyeColor" type="color" value="#1d2424" /></label>
+              <label>Shirt color <input id="shirtColor" type="color" value="#147c78" /></label>
+              <label>Hair style
+                <select id="hairStyle">
+                  <option value="short">Short</option>
+                  <option value="curly">Curly</option>
+                  <option value="side">Side sweep</option>
+                  <option value="puffs">Puffs</option>
+                </select>
+              </label>
+              <label>Expression
+                <select id="expression">
+                  <option value="smile">Smile</option>
+                  <option value="focus">Focused</option>
+                  <option value="laugh">Laugh</option>
+                  <option value="calm">Calm</option>
+                  <option value="wow">Wow</option>
+                </select>
+              </label>
+              <label>Outfit
+                <select id="outfit">
+                  <option value="tee">Tee</option>
+                  <option value="hoodie">Hoodie</option>
+                  <option value="overalls">Overalls</option>
+                  <option value="space">Space suit</option>
+                </select>
+              </label>
+              <label>Accessory
+                <select id="accessory">
+                  <option value="none">None</option>
+                  <option value="glasses">Glasses</option>
+                  <option value="cap">Cap</option>
+                  <option value="stars">Stars</option>
+                  <option value="headphones">Headphones</option>
+                  <option value="crown">Crown</option>
+                </select>
+              </label>
+              <label>Badge
+                <select id="avatarBadge">
+                  <option value="none">None</option>
+                  <option value="maker">Maker</option>
+                  <option value="reader">Reader</option>
+                  <option value="helper">Helper</option>
+                  <option value="explorer">Explorer</option>
+                </select>
+              </label>
+              <button id="randomAvatar" class="primary-action" type="button">Surprise me</button>
+              <button id="saveWardrobeAvatar" class="secondary-action" type="button">Save to wardrobe</button>
+              <button id="saveAvatar" class="secondary-action" type="button">Save avatar to projects</button>
+              <div id="avatarWardrobe" class="wardrobe-list"></div>
+            </div>
+          </div>
+        </section>
+
+        <section id="create" class="view" aria-labelledby="viewTitle">
+          <div class="tool-layout">
+            <div class="drawing-board">
+              <canvas id="drawCanvas" width="900" height="560" aria-label="Drawing board"></canvas>
+            </div>
+            <div class="controls">
+              <h2>Create Studio</h2>
+              <div class="tool-group" aria-label="Drawing tools">
+                <button class="draw-tool active" data-tool="pencil" type="button">Pencil</button>
+                <button class="draw-tool" data-tool="eraser" type="button">Eraser</button>
+                <button class="draw-tool" data-tool="line" type="button">Line</button>
+                <button class="draw-tool" data-tool="rect" type="button">Box</button>
+                <button class="draw-tool" data-tool="circle" type="button">Circle</button>
+              </div>
+              <label>Brush <input id="brushColor" type="color" value="#105c57" /></label>
+              <div class="swatches" aria-label="Quick colors">
+                <button class="color-swatch" data-color="#105c57" style="background: #105c57" type="button"></button>
+                <button class="color-swatch" data-color="#d7664f" style="background: #d7664f" type="button"></button>
+                <button class="color-swatch" data-color="#d79a2b" style="background: #d79a2b" type="button"></button>
+                <button class="color-swatch" data-color="#3b8abf" style="background: #3b8abf" type="button"></button>
+                <button class="color-swatch" data-color="#1d2424" style="background: #1d2424" type="button"></button>
+              </div>
+              <label>Size <input id="brushSize" type="range" min="2" max="36" value="10" /></label>
+              <label>Background
+                <select id="canvasBackground">
+                  <option value="#ffffff">White</option>
+                  <option value="#dbe9e1">Garden</option>
+                  <option value="#101828">Space</option>
+                  <option value="#e7d7a8">Warm paper</option>
+                </select>
+              </label>
+              <div class="sticker-row" aria-label="Stickers">
+                <button class="sticker-button" data-sticker="star" type="button">Star</button>
+                <button class="sticker-button" data-sticker="heart" type="button">Heart</button>
+                <button class="sticker-button" data-sticker="leaf" type="button">Leaf</button>
+                <button class="sticker-button" data-sticker="moon" type="button">Moon</button>
+              </div>
+              <label>Project name <input id="projectName" type="text" maxlength="32" placeholder="My drawing" /></label>
+              <button id="undoDrawing" class="secondary-action" type="button">Undo stroke</button>
+              <button id="clearDrawing" class="secondary-action" type="button">Clear canvas</button>
+              <button id="saveDrawing" class="secondary-action" type="button">Save project</button>
+              <button id="saveSpark" class="primary-action" type="button">I made something</button>
+            </div>
+          </div>
+        </section>
+
+        <section id="learn" class="view" aria-labelledby="viewTitle">
+          <div class="learn-hero">
+            <div>
+              <p class="eyebrow">Learning Garden</p>
+              <h2>Grow one idea at a time.</h2>
+              <p class="hero-copy">
+                Read, count, observe, write, ask, and collect discoveries without leaving the safe portal.
+              </p>
+            </div>
+            <div class="learn-meter" aria-label="Learning progress">
+              <span id="learnCount">0</span>
+              <small>learning seeds planted</small>
+            </div>
+          </div>
+
+          <div class="learn-layout">
+            <section class="learn-main" aria-label="Learning quests">
+              <div class="learn-toolbar">
+                <button class="subject-filter active" data-subject="all" type="button">All</button>
+                <button class="subject-filter" data-subject="reading" type="button">Reading</button>
+                <button class="subject-filter" data-subject="math" type="button">Math</button>
+                <button class="subject-filter" data-subject="science" type="button">Science</button>
+                <button class="subject-filter" data-subject="writing" type="button">Writing</button>
+              </div>
+              <div id="learnCards" class="learn-cards"></div>
+            </section>
+
+            <aside class="learn-panel" aria-label="Learning tools">
+              <section>
+                <p class="eyebrow">Reading log</p>
+                <label>Book title <input id="bookTitle" type="text" maxlength="50" placeholder="Book or story name" /></label>
+                <label>Pages read <input id="bookPages" type="number" min="1" max="999" placeholder="10" /></label>
+                <button id="addReading" class="primary-action" type="button">Log reading</button>
+              </section>
+
+              <section>
+                <p class="eyebrow">Word collector</p>
+                <label>New word <input id="newWord" type="text" maxlength="28" placeholder="curious" /></label>
+                <label>What it means <input id="wordMeaning" type="text" maxlength="90" placeholder="wanting to learn" /></label>
+                <button id="addWord" class="secondary-action" type="button">Save word</button>
+              </section>
+
+              <section>
+                <p class="eyebrow">Question box</p>
+                <label>Question <input id="newQuestion" type="text" maxlength="120" placeholder="Why is the sky blue?" /></label>
+                <button id="addQuestion" class="secondary-action" type="button">Save question</button>
+              </section>
+            </aside>
+          </div>
+
+          <div class="section-grid learn-bottom">
+            <article class="task-panel">
+              <div>
+                <p class="eyebrow">Learning journal</p>
+                <h3>Recent discoveries</h3>
+              </div>
+              <div id="learningJournal" class="journal-list"></div>
+            </article>
+            <article class="task-panel">
+              <div>
+                <p class="eyebrow">Practice shelf</p>
+                <h3>Words and questions</h3>
+              </div>
+              <div id="learningShelf" class="journal-list"></div>
+            </article>
+          </div>
+        </section>
+
+        <section id="wiki" class="view" aria-labelledby="viewTitle">
+          <div class="learn-hero">
+            <div>
+              <p class="eyebrow">Offline Wiki</p>
+              <h2>Kid-safe facts without the open web.</h2>
+              <p class="hero-copy">Read short, family-approved articles. Add future content packs from `content/wiki`.</p>
+            </div>
+            <div class="learn-meter">
+              <span id="wikiCount">0</span>
+              <small>wiki articles</small>
+            </div>
+          </div>
+          <div class="learn-layout">
+            <section class="learn-main">
+              <div class="learn-toolbar">
+                <button class="wiki-filter active" data-topic="all" type="button">All</button>
+                <button class="wiki-filter" data-topic="space" type="button">Space</button>
+                <button class="wiki-filter" data-topic="earth" type="button">Earth</button>
+                <button class="wiki-filter" data-topic="body" type="button">Body</button>
+                <button class="wiki-filter" data-topic="making" type="button">Making</button>
+              </div>
+              <div id="wikiArticles" class="learn-cards"></div>
+            </section>
+            <aside class="learn-panel">
+              <p class="eyebrow">Article</p>
+              <h2 id="wikiTitle">Choose an article</h2>
+              <p id="wikiBody" class="soft-note">Pick a topic to read a short offline article.</p>
+              <button id="saveWikiDiscovery" class="secondary-action" type="button">Save discovery</button>
+            </aside>
+          </div>
+        </section>
+
+        <section id="play" class="view" aria-labelledby="viewTitle">
+          <div class="play-hero">
+            <div>
+              <p class="eyebrow">Playable Games</p>
+              <h2>Play games that build your brain and body.</h2>
+              <p class="hero-copy">
+                Short games with clear endings, gentle scoring, and healthy missions.
+              </p>
+            </div>
+            <div class="game-score">
+              <span id="gameScore">0</span>
+              <small>game wins</small>
+            </div>
+          </div>
+
+          <div class="game-layout">
+            <aside class="game-menu" aria-label="Games">
+              <button class="game-choice active" data-game="memory" type="button">Memory Match</button>
+              <button class="game-choice" data-game="math" type="button">Math Sprint</button>
+              <button class="game-choice" data-game="word" type="button">Word Builder</button>
+              <button class="game-choice" data-game="move" type="button">Move Timer</button>
+              <button class="game-choice" data-game="pattern" type="button">Pattern Pop</button>
+              <button class="game-choice" data-game="reaction" type="button">Reaction Star</button>
+              <button class="game-choice" data-game="color" type="button">Color Match</button>
+              <button class="game-choice" data-game="sound" type="button">Rhythm Tap</button>
+              <button class="game-choice" data-game="maze" type="button">Mini Maze</button>
+              <button class="game-choice" data-game="map" type="button">Map Finder</button>
+              <button class="game-choice" data-game="planet" type="button">Planet Pick</button>
+              <button class="game-choice" data-game="kindness" type="button">Kindness Cards</button>
+              <button class="game-choice" data-game="breath" type="button">Breath Count</button>
+              <button class="game-choice" data-game="story" type="button">Story Spinner</button>
+              <button class="game-choice" data-game="shape" type="button">Shape Sort</button>
+              <button class="game-choice" data-game="count" type="button">Count Quest</button>
+              <button class="game-choice" data-game="rhyme" type="button">Rhyme Time</button>
+              <button class="game-choice" data-game="opposite" type="button">Opposites</button>
+              <button class="game-choice" data-game="memory2" type="button">Big Memory</button>
+              <button class="game-choice" data-game="sequence" type="button">Sequence</button>
+              <button class="game-choice" data-game="balance" type="button">Balance Break</button>
+              <button class="game-choice" data-game="weather" type="button">Weather Wise</button>
+              <button class="game-choice" data-game="animal" type="button">Animal Clues</button>
+              <button class="game-choice" data-game="spacequiz" type="button">Space Quiz</button>
+              <button class="game-choice" data-game="art" type="button">Art Choice</button>
+              <button class="game-choice" data-game="logic" type="button">Logic Doors</button>
+              <button class="game-choice" data-game="focus" type="button">Focus Five</button>
+            </aside>
+            <section class="game-stage">
+              <div class="game-header">
+                <div>
+                  <p class="eyebrow" id="gameType">Memory</p>
+                  <h2 id="gameTitle">Memory Match</h2>
+                </div>
+                <button id="newGame" class="secondary-action" type="button">New game</button>
+              </div>
+              <p id="gameStatus" class="soft-note">Match all pairs.</p>
+              <div id="gameBoard" class="game-board"></div>
+            </section>
+          </div>
+        </section>
+
+        <section id="calm" class="view" aria-labelledby="viewTitle">
+          <div class="calm-hero">
+            <div>
+              <p class="eyebrow">Calm Corner</p>
+              <h2>Feelings are welcome here.</h2>
+              <p class="hero-copy">
+                Breathe, name the feeling, save a gratitude note, and take healthy screen breaks.
+              </p>
+            </div>
+            <div class="calm-summary">
+              <span id="calmCount">0</span>
+              <small>calm moments</small>
+            </div>
+          </div>
+
+          <div class="calm-layout">
+            <section class="breathing-panel">
+              <p class="eyebrow">Breathing guide</p>
+              <h2 id="breathInstruction">Ready</h2>
+              <div id="breathCircle" class="breath-circle">Breathe</div>
+              <div class="hero-actions">
+                <button id="startBreathing" class="primary-action" type="button">Start breathing</button>
+                <button id="stopBreathing" class="secondary-action" type="button">Stop</button>
+              </div>
+            </section>
+
+            <aside class="calm-panel">
+              <section>
+                <p class="eyebrow">Feelings check-in</p>
+                <div class="feeling-grid">
+                  <button class="feeling-button" data-feeling="Happy" type="button">Happy</button>
+                  <button class="feeling-button" data-feeling="Curious" type="button">Curious</button>
+                  <button class="feeling-button" data-feeling="Worried" type="button">Worried</button>
+                  <button class="feeling-button" data-feeling="Angry" type="button">Angry</button>
+                  <button class="feeling-button" data-feeling="Tired" type="button">Tired</button>
+                  <button class="feeling-button" data-feeling="Proud" type="button">Proud</button>
+                </div>
+              </section>
+
+              <section>
+                <p class="eyebrow">Gratitude</p>
+                <label>Today I am thankful for <input id="gratitudeInput" type="text" maxlength="100" placeholder="something kind or good" /></label>
+                <button id="saveGratitude" class="secondary-action" type="button">Save gratitude</button>
+              </section>
+
+              <section>
+                <p class="eyebrow">Break timer</p>
+                <label>Minutes <input id="breakMinutes" type="number" min="1" max="20" value="5" /></label>
+                <button id="startBreak" class="secondary-action" type="button">Start break</button>
+                <p id="breakStatus" class="soft-note">No break running.</p>
+              </section>
+            </aside>
+          </div>
+
+          <div class="section-grid calm-bottom">
+            <article class="task-panel">
+              <div>
+                <p class="eyebrow">Calm log</p>
+                <h3>Feelings and gratitude</h3>
+              </div>
+              <div id="calmLog" class="journal-list"></div>
+            </article>
+            <article class="task-panel">
+              <div>
+                <p class="eyebrow">Reset ideas</p>
+                <h3>Small things that help</h3>
+              </div>
+              <div id="resetIdeas" class="task-list"></div>
+            </article>
+          </div>
+        </section>
+
+        <section id="space" class="view" aria-labelledby="viewTitle">
+          <div class="space-command">
+            <div>
+              <p class="eyebrow">Mission Control</p>
+              <h2>Explore planets, build rockets, track the Moon, and save discoveries.</h2>
+            </div>
+            <div class="space-summary">
+              <span id="spaceScore">0</span>
+              <small>space discoveries</small>
+            </div>
+          </div>
+
+          <div class="space-layout">
+            <div class="space-stage">
+              <canvas id="spaceCanvas" width="1000" height="620" aria-label="Solar system explorer"></canvas>
+              <div class="space-actions">
+                <button class="secondary-action planet-choice active" data-planet="Mercury" type="button">Mercury</button>
+                <button class="secondary-action planet-choice" data-planet="Venus" type="button">Venus</button>
+                <button class="secondary-action planet-choice" data-planet="Earth" type="button">Earth</button>
+                <button class="secondary-action planet-choice" data-planet="Mars" type="button">Mars</button>
+                <button class="secondary-action planet-choice" data-planet="Jupiter" type="button">Jupiter</button>
+                <button class="secondary-action planet-choice" data-planet="Saturn" type="button">Saturn</button>
+                <button id="spaceScaleMode" class="secondary-action" type="button" aria-pressed="false">Scale mode</button>
+                <button id="asteroidToggle" class="secondary-action" type="button" aria-pressed="false">Asteroids</button>
+              </div>
+            </div>
+            <aside class="space-panel">
+              <p class="eyebrow">Space lab</p>
+              <h2 id="planetTitle">Mercury</h2>
+              <p id="planetFact">The smallest planet moves around the Sun very quickly.</p>
+              <div id="planetStats" class="stat-list"></div>
+              <label>Observation note <input id="spaceNote" type="text" maxlength="120" placeholder="I noticed..." /></label>
+              <button id="saveSpaceNote" class="secondary-action" type="button">Save note</button>
+              <button id="spaceSpark" class="primary-action" type="button">Mission done</button>
+            </aside>
+          </div>
+
+          <div class="section-grid space-bottom">
+            <article class="task-panel">
+              <div>
+                <p class="eyebrow">Constellation maker</p>
+                <h3>Tap the sky to place stars</h3>
+              </div>
+              <canvas id="starsCanvas" width="640" height="310" aria-label="Constellation maker"></canvas>
+              <div class="hero-actions">
+                <button id="clearStars" class="secondary-action" type="button">Clear stars</button>
+                <button id="nameStars" class="primary-action" type="button">Name my constellation</button>
+                <button id="saveConstellation" class="secondary-action" type="button">Save constellation</button>
+              </div>
+              <p id="starName" class="soft-note">No constellation yet.</p>
+            </article>
+            <article class="task-panel">
+              <div>
+                <p class="eyebrow">Space missions</p>
+                <h3>Screen plus real world</h3>
+              </div>
+              <div id="spaceCards" class="task-list"></div>
+            </article>
+          </div>
+
+          <div class="section-grid space-bottom">
+            <article class="task-panel">
+              <div>
+                <p class="eyebrow">Space quiz</p>
+                <h3 id="spaceQuizQuestion">Choose a planet to start.</h3>
+              </div>
+              <div id="spaceQuizAnswers" class="quiz-answers"></div>
+            </article>
+            <article class="task-panel">
+              <div>
+                <p class="eyebrow">Mission log</p>
+                <h3>Saved space discoveries</h3>
+              </div>
+              <div id="spaceLog" class="journal-list"></div>
+            </article>
+          </div>
+
+          <div class="section-grid space-bottom">
+            <article class="task-panel">
+              <div>
+                <p class="eyebrow">Moon phase lab</p>
+                <h3>Slide through the Moon&apos;s month</h3>
+              </div>
+              <canvas id="moonCanvas" width="420" height="240" aria-label="Moon phase explorer"></canvas>
+              <label>Moon day <input id="moonPhase" type="range" min="0" max="28" value="0" /></label>
+              <p id="moonLabel" class="soft-note">New Moon</p>
+              <button id="saveMoonNote" class="secondary-action" type="button">Save Moon observation</button>
+            </article>
+            <article class="task-panel">
+              <div>
+                <p class="eyebrow">Rocket builder</p>
+                <h3>Design a mission vehicle</h3>
+              </div>
+              <div id="rocketPreview" class="rocket-preview" aria-label="Rocket preview"></div>
+              <label>Body color <input id="rocketBody" type="color" value="#d7664f" /></label>
+              <label>Window color <input id="rocketWindow" type="color" value="#6e9fc9" /></label>
+              <label>Mission name <input id="rocketName" type="text" maxlength="32" placeholder="Kind Comet" /></label>
+              <button id="saveRocket" class="primary-action" type="button">Save rocket</button>
+            </article>
+          </div>
+
+          <div class="section-grid space-bottom">
+            <article class="task-panel">
+              <div>
+                <p class="eyebrow">Mission checklist</p>
+                <h3>Become a careful explorer</h3>
+              </div>
+              <div id="spaceChecklist" class="packing-list"></div>
+            </article>
+            <article class="task-panel">
+              <div>
+                <p class="eyebrow">Saved rockets</p>
+                <h3>Fleet hangar</h3>
+              </div>
+              <div id="rocketHangar" class="journal-list"></div>
+            </article>
+          </div>
+        </section>
+
+        <section id="travel" class="view" aria-labelledby="viewTitle">
+          <div class="travel-hero">
+            <div>
+              <p class="eyebrow">Offline Travel</p>
+              <h2>Explore places, collect stamps, and plan gentle trips.</h2>
+              <p class="hero-copy">
+                A kid-safe atlas for geography, observation, planning, and imagination.
+              </p>
+            </div>
+            <div class="passport-summary">
+              <span id="stampCount">0</span>
+              <small>passport stamps</small>
+            </div>
+          </div>
+
+          <div class="travel-layout">
+            <section class="map-shell">
+              <div class="map-toolbar">
+                <button id="zoomOut" class="icon-button" type="button" title="Zoom out">-</button>
+                <input id="mapZoom" type="range" min="1" max="3" step="0.1" value="1" aria-label="Map zoom" />
+                <button id="zoomIn" class="icon-button" type="button" title="Zoom in">+</button>
+                <button id="resetMap" class="secondary-action" type="button">Reset</button>
+              </div>
+              <div id="mapViewport" class="map-viewport" aria-label="Offline zoomable travel map">
+                <div id="mapWorld" class="map-world"></div>
+              </div>
+            </section>
+
+            <aside class="travel-panel">
+              <p class="eyebrow">Selected place</p>
+              <h2 id="placeTitle">Choose a place</h2>
+              <p id="placeRegion" class="soft-note">Tap a map pin or place card.</p>
+              <p id="placeInfo">Choose a map stop to get a gentle mission.</p>
+              <div id="placeFacts" class="fact-list"></div>
+              <button id="stampPlace" class="primary-action" type="button" disabled>Stamp passport</button>
+            </aside>
+          </div>
+
+          <div class="travel-tabs" aria-label="Travel regions">
+            <button class="region-filter active" data-region="all" type="button">All</button>
+            <button class="region-filter" data-region="nature" type="button">Nature</button>
+            <button class="region-filter" data-region="maker" type="button">Maker</button>
+            <button class="region-filter" data-region="science" type="button">Science</button>
+            <button class="region-filter" data-region="arts" type="button">Arts</button>
+          </div>
+          <div id="placeCards" class="place-cards"></div>
+
+          <div class="section-grid travel-bottom">
+            <article class="task-panel">
+              <div>
+                <p class="eyebrow">Passport</p>
+                <h3>Visited places</h3>
+              </div>
+              <div id="passportStamps" class="passport-list"></div>
+            </article>
+            <article class="task-panel">
+              <div>
+                <p class="eyebrow">Trip planner</p>
+                <h3>Pack and notice</h3>
+              </div>
+              <div id="packingList" class="packing-list"></div>
+              <label>Trip note <input id="tripNote" type="text" maxlength="120" placeholder="I want to look for..." /></label>
+              <button id="saveTripNote" class="secondary-action" type="button">Save trip note</button>
+              <div id="tripNotes" class="journal-list"></div>
+            </article>
+          </div>
+        </section>
+
+        <section id="projects" class="view" aria-labelledby="viewTitle">
+          <div class="project-header">
+            <div>
+              <p class="eyebrow">Saved locally</p>
+              <h2>Project Gallery</h2>
+              <p id="projectHelp" class="soft-note">Saved creations stay in this browser.</p>
+            </div>
+            <button id="clearProjects" class="secondary-action" type="button">Clear gallery</button>
+          </div>
+          <div id="projectGallery" class="project-gallery"></div>
+        </section>
+
+        <section id="parent" class="view" aria-labelledby="viewTitle">
+          <div class="parent-panel">
+            <h2>Parent Controls</h2>
+            <p>
+              This starter portal runs offline and does not browse the open web. Add only sites your family approves.
+            </p>
+            <div id="parentLock" class="parent-lock">
+              <label>Parent PIN <input id="parentPin" type="password" inputmode="numeric" placeholder="Default: 1234" /></label>
+              <button id="unlockParent" class="primary-action" type="button">Unlock</button>
+              <p id="pinMessage" class="soft-note">Default PIN is 1234. Change it after unlocking.</p>
+            </div>
+            <div id="parentTools" class="parent-tools" hidden>
+              <label>New safe link name <input id="linkName" type="text" placeholder="Example: NASA Kids" /></label>
+              <label>New safe link URL <input id="linkUrl" type="url" placeholder="https://example.com" /></label>
+              <button id="addLink" class="primary-action" type="button">Add safe link</button>
+              <p id="linkMessage" class="soft-note"></p>
+              <label>Family motto <input id="mottoInput" type="text" maxlength="100" placeholder="We create, learn, help, and rest." /></label>
+              <button id="saveMotto" class="secondary-action" type="button">Save motto</button>
+              <label>New kid profile <input id="newProfileName" type="text" maxlength="18" placeholder="Name" /></label>
+              <button id="addProfile" class="secondary-action" type="button">Add profile</button>
+              <button id="removeProfile" class="secondary-action" type="button">Remove current profile</button>
+              <div id="parentLinks" class="link-list"></div>
+              <section class="parent-insights">
+                <div>
+                  <p class="eyebrow">Parent dashboard</p>
+                  <h3>Local growth insights</h3>
+                  <p class="soft-note">These are activity patterns, not medical or psychological labels.</p>
+                </div>
+                <div id="parentInsights" class="insight-grid"></div>
+              </section>
+              <div class="parent-actions">
+                <label>New parent PIN <input id="newPin" type="password" inputmode="numeric" minlength="4" maxlength="12" /></label>
+                <button id="changePin" class="secondary-action" type="button">Change PIN</button>
+                <button id="resetSparks" class="secondary-action" type="button">Reset sparks</button>
+                <button id="exportData" class="secondary-action" type="button">Export backup</button>
+                <label class="file-action">Import backup <input id="importData" type="file" accept="application/json" /></label>
+                <button id="lockParent" class="secondary-action" type="button">Lock</button>
+              </div>
+            </div>
+          </div>
+        </section>
+      </section>
+    </main>
+    <div id="toast" class="toast" role="status" aria-live="polite"></div>
+    <div id="celebrationLayer" class="celebration-layer" aria-hidden="true"></div>
+
+    <script src="app.js"></script>
+  </body>
+</html>

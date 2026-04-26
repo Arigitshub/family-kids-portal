@@ -1,0 +1,16 @@
+{
+  "name": "Family Kids Portal",
+  "short_name": "Kids Portal",
+  "description": "Offline-first kid-safe family portal for learning, play, creativity, avatars, calm routines, local progress, offline wiki content, and map exploration.",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#f4f1e8",
+  "theme_color": "#173f3d",
+  "icons": [
+    {
+      "src": "assets/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ]
+}

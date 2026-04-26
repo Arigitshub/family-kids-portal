@@ -1,0 +1,40 @@
+{
+  "packId": "starter-pack",
+  "title": "Starter Offline Wiki",
+  "ageRange": "5-12",
+  "reviewedBy": "Family",
+  "articles": [
+    {
+      "id": "moon",
+      "topic": "space",
+      "title": "Why the Moon Changes Shape",
+      "summary": "The Moon looks different as sunlight hits it from different angles.",
+      "body": "The Moon does not make its own light. We see sunlight bouncing from its surface. As the Moon moves around Earth, we see different parts of the lit side.",
+      "tryThis": "Draw the Moon three nights in a row and compare the shape."
+    },
+    {
+      "id": "rainforest",
+      "topic": "earth",
+      "title": "Rainforests Are Layered Homes",
+      "summary": "Rainforests have layers where different plants and animals live.",
+      "body": "A rainforest has a forest floor, understory, canopy, and emergent layer. Each layer has different light, food, and shelter.",
+      "tryThis": "Build a four-layer forest from paper and label each layer."
+    },
+    {
+      "id": "brain-practice",
+      "topic": "body",
+      "title": "Your Brain Gets Better With Practice",
+      "summary": "Practice helps the brain make stronger learning paths.",
+      "body": "When you practice reading, drawing, building, moving, or solving, your brain gets better at sending useful signals.",
+      "tryThis": "Pick one small skill and practice it for five minutes."
+    },
+    {
+      "id": "bridges",
+      "topic": "making",
+      "title": "How Bridges Hold Weight",
+      "summary": "Bridges use shape and material to spread weight.",
+      "body": "A bridge works by spreading weight into supports. Triangles, arches, beams, and cables can all help a bridge stay strong.",
+      "tryThis": "Make a paper bridge and test how many coins it can hold."
+    }
+  ]
+}

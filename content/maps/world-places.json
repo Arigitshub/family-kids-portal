@@ -1,0 +1,55 @@
+{
+  "packId": "world-places",
+  "title": "Starter World Places",
+  "license": "Project-authored starter data",
+  "places": [
+    {
+      "id": "grand-canyon",
+      "name": "Grand Canyon",
+      "region": "nature",
+      "x": 20,
+      "y": 44,
+      "mission": "Sketch rock layers and invent a safe hiking plan.",
+      "facts": [
+        "The Grand Canyon is in Arizona, United States.",
+        "The Colorado River helped carve it over a very long time."
+      ]
+    },
+    {
+      "id": "amazon",
+      "name": "Amazon Rainforest",
+      "region": "nature",
+      "x": 34,
+      "y": 62,
+      "mission": "Design a layered rainforest habitat.",
+      "facts": [
+        "The Amazon spans several South American countries.",
+        "Rainforests are home to many plants, animals, and fungi."
+      ]
+    },
+    {
+      "id": "cairo",
+      "name": "Cairo",
+      "region": "maker",
+      "x": 54,
+      "y": 47,
+      "mission": "Build a pyramid from blocks and test stable shapes.",
+      "facts": [
+        "Cairo is the capital of Egypt.",
+        "The Nile River has supported communities for thousands of years."
+      ]
+    },
+    {
+      "id": "tokyo",
+      "name": "Tokyo",
+      "region": "science",
+      "x": 83,
+      "y": 43,
+      "mission": "Design a transit map for a busy city.",
+      "facts": [
+        "Tokyo is the capital of Japan.",
+        "Large cities use trains, maps, and planning to help people move."
+      ]
+    }
+  ]
+}

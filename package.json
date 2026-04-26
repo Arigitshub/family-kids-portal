@@ -1,0 +1,31 @@
+{
+  "name": "family-kids-portal",
+  "version": "0.1.0",
+  "private": false,
+  "description": "Offline-first kid-safe family portal for learning, play, creativity, avatars, calm routines, local progress, offline wiki content, and map exploration.",
+  "keywords": [
+    "kids",
+    "family",
+    "offline-first",
+    "education",
+    "homeschool",
+    "safe-internet",
+    "kids-games",
+    "avatars",
+    "offline-wiki",
+    "offline-maps"
+  ],
+  "homepage": "https://arigitshub.github.io/family-kids-portal/",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Arigitshub/family-kids-portal.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Arigitshub/family-kids-portal/issues"
+  },
+  "scripts": {
+    "check": "node --check app.js",
+    "serve": "npx http-server . -p 4173"
+  },
+  "license": "MIT"
+}

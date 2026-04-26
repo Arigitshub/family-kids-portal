@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" role="img" aria-label="Family Kids Portal">
+  <rect width="256" height="256" rx="32" fill="#173f3d"/>
+  <circle cx="82" cy="92" r="36" fill="#d79a2b"/>
+  <circle cx="158" cy="86" r="24" fill="#6e9fc9"/>
+  <path d="M48 182c18-42 84-42 102 0" fill="none" stroke="#fffdf7" stroke-width="18" stroke-linecap="round"/>
+  <path d="M132 178c14-30 58-30 72 0" fill="none" stroke="#fffdf7" stroke-width="14" stroke-linecap="round"/>
+  <path d="M176 48l8 18 20 2-15 13 5 20-18-10-17 10 4-20-15-13 20-2z" fill="#fffdf7"/>
+</svg>
