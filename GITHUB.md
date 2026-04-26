@@ -1,6 +1,6 @@
 # GitHub Publishing Notes
 
-This project is intended to be linked to:
+This project is linked to:
 
 ```text
 https://github.com/Arigitshub/family-kids-portal
@@ -28,6 +28,8 @@ https://arigitshub.github.io/family-kids-portal/
 The workflow in `.github/workflows/pages.yml` deploys the static app from the repository root.
 
 After the first push, check the Actions tab. If Pages is not active, enable GitHub Pages with GitHub Actions as the source.
+
+Current note: the initial Pages workflow was triggered after the first push, but GitHub reported that the account is locked due to a billing issue. The app code and workflow are in the repo; Pages should be retried after the account issue is resolved.
 
 ## Offline content docs
 
