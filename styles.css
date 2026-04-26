@@ -1022,7 +1022,11 @@ h3 {
 
 .math-board,
 .word-board,
-.move-board {
+.move-board,
+.reaction-board,
+.rhythm-board,
+.sequence-board,
+.focus-board {
   justify-items: center;
   text-align: center;
 }
@@ -1033,6 +1037,127 @@ h3 {
   font-size: clamp(2.4rem, 8vw, 5rem);
   font-weight: 900;
   color: var(--teal-dark);
+}
+
+.challenge-card,
+.game-finish {
+  display: grid;
+  gap: 16px;
+  justify-items: center;
+  text-align: center;
+}
+
+.choice-prompt {
+  font-size: clamp(1.4rem, 4vw, 2.4rem);
+  font-weight: 900;
+  color: var(--teal-dark);
+}
+
+.choice-options {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+}
+
+.choice-answer.correct,
+.focus-cell.correct {
+  background: #dbe9e1;
+  border-color: #6aa66a;
+  color: #173f3d;
+  animation: pop 220ms ease both;
+}
+
+.choice-answer.wrong,
+.focus-cell.wrong {
+  border-color: #d7664f;
+  color: #9f2f24;
+}
+
+.reaction-light {
+  display: grid;
+  place-items: center;
+  width: min(220px, 70vw);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: #e7d7a8;
+  border: 2px solid var(--line);
+  color: var(--teal-dark);
+  font-size: clamp(2rem, 6vw, 4rem);
+  font-weight: 900;
+  transition: transform 180ms ease, background 180ms ease;
+}
+
+.reaction-light.ready {
+  background: #dbe9e1;
+  transform: scale(1.06);
+  box-shadow: 0 0 0 12px rgba(20, 124, 120, 0.12);
+}
+
+.pulse-once {
+  animation: pop 220ms ease both;
+}
+
+.maze-grid,
+.focus-grid {
+  display: grid;
+  gap: 8px;
+}
+
+.maze-grid {
+  grid-template-columns: repeat(4, minmax(58px, 92px));
+}
+
+.maze-cell,
+.focus-cell {
+  min-height: 70px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #fffdf7;
+  color: var(--teal-dark);
+  font-weight: 900;
+}
+
+.maze-cell.wall {
+  background: #e5e1d5;
+}
+
+.maze-cell.player {
+  background: var(--teal);
+  color: #fff;
+  transform: scale(1.03);
+}
+
+.maze-cell.key {
+  background: #e7d7a8;
+}
+
+.maze-cell.door {
+  background: #dbe9e1;
+}
+
+.sequence-strip {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+}
+
+.sequence-strip span {
+  min-width: 78px;
+  padding: 14px 16px;
+  border-radius: 8px;
+  background: #e7d7a8;
+  color: var(--teal-dark);
+  font-weight: 900;
+}
+
+.hidden-sequence span {
+  color: transparent;
+}
+
+.focus-grid {
+  grid-template-columns: repeat(3, minmax(70px, 110px));
 }
 
 .learn-hero {

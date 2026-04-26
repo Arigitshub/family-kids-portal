@@ -108,6 +108,8 @@ Healthy Play is now a playable games area instead of a list of prompts. It inclu
 - Word Builder with scrambled words.
 - Move Timer for a short physical movement challenge.
 - 25+ short brain-training games covering memory, focus, language, math, rhythm, logic, kindness, science, creativity, and movement.
+- Multi-round quiz games with shuffled answers and clear completion.
+- Special interactive game modes: reaction timing, rhythm tapping, maze movement, sequence recall, and focus scanning.
 - Game win count saved locally.
 - Spark rewards for completed games.
 

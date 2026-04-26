@@ -461,6 +461,94 @@ const gameLibrary = {
   focus: { title: "Focus Five", type: "Focus", status: "Find the exact number.", skill: "focus", prompt: "Pick the number five.", answer: "5", choices: ["3", "5", "8"] },
 };
 
+const gameChallenges = {
+  pattern: [
+    { prompt: "Red, blue, red, blue, ?", answer: "red", choices: ["red", "green", "yellow"] },
+    { prompt: "2, 4, 6, ?", answer: "8", choices: ["7", "8", "10"] },
+    { prompt: "Circle, square, circle, square, ?", answer: "circle", choices: ["triangle", "circle", "star"] },
+  ],
+  color: [
+    { prompt: "Which color matches grass?", answer: "green", choices: ["blue", "green", "red"] },
+    { prompt: "Which color matches the sky on a clear day?", answer: "blue", choices: ["purple", "blue", "black"] },
+    { prompt: "Which color matches a banana?", answer: "yellow", choices: ["yellow", "gray", "pink"] },
+  ],
+  map: [
+    { prompt: "Which direction is usually at the top of a map?", answer: "north", choices: ["south", "north", "under"] },
+    { prompt: "What tool helps show distance on a map?", answer: "scale", choices: ["scale", "pillow", "spoon"] },
+    { prompt: "What symbol explains map pictures?", answer: "legend", choices: ["legend", "ladder", "lantern"] },
+  ],
+  planet: [
+    { prompt: "Which planet has famous rings?", answer: "Saturn", choices: ["Saturn", "Mars", "Earth"] },
+    { prompt: "Which planet is our home?", answer: "Earth", choices: ["Mercury", "Earth", "Jupiter"] },
+    { prompt: "Which planet is called the red planet?", answer: "Mars", choices: ["Mars", "Venus", "Neptune"] },
+  ],
+  kindness: [
+    { prompt: "A toy falls. What helps?", answer: "pick it up", choices: ["laugh", "pick it up", "hide"] },
+    { prompt: "Someone feels left out. What helps?", answer: "invite them", choices: ["ignore them", "invite them", "grab toys"] },
+    { prompt: "A friend makes a mistake. What helps?", answer: "be patient", choices: ["be patient", "shout", "quit"] },
+  ],
+  breath: [
+    { prompt: "A calm breath can be in for...", answer: "4", choices: ["4", "40", "400"] },
+    { prompt: "When feelings are big, it can help to...", answer: "pause", choices: ["pause", "throw", "scroll fast"] },
+    { prompt: "Slow breathing helps your body...", answer: "settle", choices: ["settle", "float", "vanish"] },
+  ],
+  story: [
+    { prompt: "A story needs a...", answer: "character", choices: ["character", "password", "battery"] },
+    { prompt: "A problem in a story is called a...", answer: "conflict", choices: ["conflict", "sandwich", "shadow"] },
+    { prompt: "The ending tells how things...", answer: "change", choices: ["change", "freeze", "disconnect"] },
+  ],
+  shape: [
+    { prompt: "Which shape has three sides?", answer: "triangle", choices: ["circle", "triangle", "square"] },
+    { prompt: "Which shape has no corners?", answer: "circle", choices: ["circle", "rectangle", "triangle"] },
+    { prompt: "Which shape has four equal sides?", answer: "square", choices: ["oval", "square", "line"] },
+  ],
+  count: [
+    { prompt: "How many legs do two chairs with 4 legs each have?", answer: "8", choices: ["6", "8", "10"] },
+    { prompt: "Three groups of two stars make...", answer: "6", choices: ["5", "6", "7"] },
+    { prompt: "Ten minus four equals...", answer: "6", choices: ["4", "6", "14"] },
+  ],
+  rhyme: [
+    { prompt: "What rhymes with star?", answer: "car", choices: ["book", "car", "tree"] },
+    { prompt: "What rhymes with light?", answer: "night", choices: ["night", "leaf", "cup"] },
+    { prompt: "What rhymes with play?", answer: "day", choices: ["day", "moon", "fish"] },
+  ],
+  opposite: [
+    { prompt: "Opposite of hot?", answer: "cold", choices: ["warm", "cold", "sun"] },
+    { prompt: "Opposite of loud?", answer: "quiet", choices: ["quiet", "huge", "round"] },
+    { prompt: "Opposite of up?", answer: "down", choices: ["left", "down", "near"] },
+  ],
+  balance: [
+    { prompt: "Balance safely for 10 seconds, then choose done.", answer: "done", choices: ["done", "skip", "run"] },
+    { prompt: "A safe balance challenge should have...", answer: "space", choices: ["space", "a wet floor", "closed eyes"] },
+    { prompt: "If balance feels unsafe, you should...", answer: "stop", choices: ["stop", "rush", "spin faster"] },
+  ],
+  weather: [
+    { prompt: "Dark clouds often mean...", answer: "rain", choices: ["rain", "sand", "sleep"] },
+    { prompt: "A thermometer measures...", answer: "temperature", choices: ["temperature", "music", "kindness"] },
+    { prompt: "Wind is moving...", answer: "air", choices: ["air", "rock", "paper"] },
+  ],
+  animal: [
+    { prompt: "I hop and have long ears.", answer: "rabbit", choices: ["fish", "rabbit", "bee"] },
+    { prompt: "I buzz and help flowers.", answer: "bee", choices: ["bee", "whale", "lizard"] },
+    { prompt: "I swim and have fins.", answer: "fish", choices: ["owl", "fish", "horse"] },
+  ],
+  spacequiz: [
+    { prompt: "Earth has one...", answer: "Moon", choices: ["Moon", "ring", "tail"] },
+    { prompt: "The Sun is a...", answer: "star", choices: ["planet", "star", "cloud"] },
+    { prompt: "Astronauts travel in...", answer: "spacecraft", choices: ["spacecraft", "canoes", "wagons"] },
+  ],
+  art: [
+    { prompt: "Which tool makes color on paper?", answer: "crayon", choices: ["spoon", "crayon", "shoe"] },
+    { prompt: "Mixing red and yellow can make...", answer: "orange", choices: ["orange", "blue", "white"] },
+    { prompt: "A sculpture is often...", answer: "3D", choices: ["3D", "invisible", "only a sound"] },
+  ],
+  logic: [
+    { prompt: "Only blue keys open blue doors. You have blue. Choose...", answer: "blue door", choices: ["red door", "blue door", "no door"] },
+    { prompt: "All stars glow. This is a star. It can...", answer: "glow", choices: ["glow", "melt a book", "be lunch"] },
+    { prompt: "If it rains, bring boots. It rains. Bring...", answer: "boots", choices: ["boots", "sandals", "mittens"] },
+  ],
+};
+
 let activeGame = "memory";
 let memoryOpen = [];
 let memoryMatched = 0;
@@ -468,6 +556,7 @@ let mathRound = 0;
 let mathAnswer = 0;
 let wordTarget = "";
 let moveTimer = null;
+let reactionTimer = null;
 let breathTimer = null;
 let breakTimer = null;
 
@@ -484,6 +573,10 @@ function escapeHtml(value) {
     const entities = { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#039;" };
     return entities[char];
   });
+}
+
+function shuffleItems(items) {
+  return [...items].sort(() => Math.random() - 0.5);
 }
 
 function normalizeLink(url) {
@@ -776,6 +869,9 @@ function renderCalm() {
 }
 
 function completeGame(key) {
+  const board = $("#gameBoard");
+  if (board?.dataset.completed === "true") return;
+  if (board) board.dataset.completed = "true";
   state.games.wins = Math.max(0, Number(state.games.wins) || 0) + 1;
   trackActivity("play", gameLibrary[key]?.skill || "mixed", key);
   $("#gameScore").textContent = state.games.wins;
@@ -808,18 +904,26 @@ function renderParentInsights() {
 }
 
 function renderGame(game = activeGame) {
+  window.clearInterval(moveTimer);
+  window.clearTimeout(reactionTimer);
   activeGame = game;
   const meta = gameLibrary[game];
   $("#gameTitle").textContent = meta.title;
   $("#gameType").textContent = meta.type;
   $("#gameStatus").textContent = meta.status;
   $("#gameScore").textContent = state.games.wins || 0;
+  $("#gameBoard").dataset.completed = "false";
   $$(".game-choice").forEach((button) => button.classList.toggle("active", button.dataset.game === game));
   if (game === "memory") renderMemoryGame();
   if (game === "math") renderMathGame();
   if (game === "word") renderWordGame();
   if (game === "move") renderMoveGame();
-  if (!["memory", "math", "word", "move", "memory2"].includes(game)) renderChoiceGame(game);
+  if (game === "reaction") renderReactionGame();
+  if (game === "sound") renderRhythmGame();
+  if (game === "maze") renderMazeGame();
+  if (game === "sequence") renderSequenceGame();
+  if (game === "focus") renderFocusGame();
+  if (!["memory", "math", "word", "move", "memory2", "reaction", "sound", "maze", "sequence", "focus"].includes(game)) renderChoiceGame(game);
   if (game === "memory2") renderMemoryGame(6);
 }
 
@@ -827,7 +931,7 @@ function renderMemoryGame(pairCount = 4) {
   memoryOpen = [];
   memoryMatched = 0;
   const base = ["Sun", "Map", "Book", "Star", "Moon", "Leaf"].slice(0, pairCount);
-  const icons = [...base, ...base].sort(() => Math.random() - 0.5);
+  const icons = shuffleItems([...base, ...base]);
   $("#gameBoard").className = "game-board memory-board";
   $("#gameBoard").innerHTML = icons
     .map((icon, index) => `<button class="memory-tile" data-icon="${icon}" data-index="${index}" type="button">?</button>`)
@@ -862,23 +966,49 @@ function renderMemoryGame(pairCount = 4) {
 
 function renderChoiceGame(game) {
   const meta = gameLibrary[game];
+  const rounds = gameChallenges[game] || [{ prompt: meta.prompt, answer: meta.answer, choices: meta.choices }];
+  let round = 0;
+  let correct = 0;
   $("#gameBoard").className = "game-board choice-board";
-  $("#gameBoard").innerHTML = `
-    <div class="choice-prompt">${escapeHtml(meta.prompt)}</div>
-    <div class="choice-options">
-      ${meta.choices.map((choice) => `<button class="secondary-action choice-answer" data-answer="${escapeHtml(choice)}" type="button">${escapeHtml(choice)}</button>`).join("")}
-    </div>
-  `;
-  $$(".choice-answer").forEach((button) => {
-    button.addEventListener("click", () => {
-      if (button.dataset.answer !== meta.answer) {
-        showToast("Try another answer.");
-        return;
-      }
-      $("#gameStatus").textContent = `${meta.title} complete.`;
-      completeGame(game);
+
+  function drawRound() {
+    const challenge = rounds[round];
+    $("#gameStatus").textContent = `Round ${round + 1} of ${rounds.length} - ${correct} correct`;
+    $("#gameBoard").innerHTML = `
+      <div class="challenge-card">
+        <div class="choice-prompt">${escapeHtml(challenge.prompt)}</div>
+        <div class="choice-options">
+          ${shuffleItems(challenge.choices).map((choice) => `<button class="secondary-action choice-answer" data-answer="${escapeHtml(choice)}" type="button">${escapeHtml(choice)}</button>`).join("")}
+        </div>
+      </div>
+    `;
+    $$(".choice-answer").forEach((button) => {
+      button.addEventListener("click", () => {
+        if (button.dataset.answer !== challenge.answer) {
+          button.classList.add("wrong");
+          showToast("Try another answer.");
+          return;
+        }
+        button.classList.add("correct");
+        correct += 1;
+        round += 1;
+        if (round >= rounds.length) {
+          $("#gameStatus").textContent = `${meta.title} complete: ${correct} of ${rounds.length}.`;
+          $("#gameBoard").innerHTML = `
+            <div class="game-finish">
+              <strong>${escapeHtml(meta.title)} complete</strong>
+              <p>${correct} correct answers. Pick New game to try a fresh round.</p>
+            </div>
+          `;
+          completeGame(game);
+          return;
+        }
+        window.setTimeout(drawRound, 280);
+      });
     });
-  });
+  }
+
+  drawRound();
 }
 
 function renderMathGame() {
@@ -952,6 +1082,173 @@ function renderMoveGame() {
         completeGame("move");
       }
     }, 1000);
+  });
+}
+
+function renderReactionGame() {
+  window.clearTimeout(reactionTimer);
+  let ready = false;
+  let started = 0;
+  $("#gameBoard").className = "game-board reaction-board";
+  $("#gameBoard").innerHTML = `
+    <div class="reaction-light" id="reactionLight">Wait</div>
+    <p>Tap only when the light says STAR.</p>
+    <button id="reactionButton" class="primary-action" type="button">Tap</button>
+  `;
+  $("#reactionButton").addEventListener("click", () => {
+    if (!ready) {
+      $("#gameStatus").textContent = "Too soon. Wait for STAR.";
+      renderReactionGame();
+      return;
+    }
+    const time = Date.now() - started;
+    $("#reactionLight").textContent = `${time} ms`;
+    $("#gameStatus").textContent = `Reaction complete in ${time} ms.`;
+    $("#reactionButton").disabled = true;
+    completeGame("reaction");
+  });
+  const delay = 900 + Math.floor(Math.random() * 1800);
+  reactionTimer = window.setTimeout(() => {
+    ready = true;
+    started = Date.now();
+    $("#reactionLight").textContent = "STAR";
+    $("#reactionLight").classList.add("ready");
+    $("#gameStatus").textContent = "Tap now.";
+  }, delay);
+}
+
+function renderRhythmGame() {
+  const target = [2, 3, 4][Math.floor(Math.random() * 3)];
+  let taps = 0;
+  $("#gameBoard").className = "game-board rhythm-board";
+  $("#gameBoard").innerHTML = `
+    <div class="move-count" id="rhythmCount">0</div>
+    <p>Tap exactly ${target} beats, then check.</p>
+    <div class="choice-options">
+      <button id="rhythmTap" class="primary-action" type="button">Tap beat</button>
+      <button id="rhythmCheck" class="secondary-action" type="button">Check</button>
+    </div>
+  `;
+  $("#rhythmTap").addEventListener("click", () => {
+    taps += 1;
+    $("#rhythmCount").textContent = taps;
+    $("#rhythmCount").classList.remove("pulse-once");
+    void $("#rhythmCount").offsetWidth;
+    $("#rhythmCount").classList.add("pulse-once");
+  });
+  $("#rhythmCheck").addEventListener("click", () => {
+    if (taps !== target) {
+      showToast("Reset and try the beat again.");
+      taps = 0;
+      $("#rhythmCount").textContent = taps;
+      return;
+    }
+    $("#gameStatus").textContent = "Rhythm copied.";
+    completeGame("sound");
+  });
+}
+
+function renderMazeGame() {
+  const cells = [
+    "start", "path", "wall", "wall",
+    "wall", "path", "path", "wall",
+    "wall", "wall", "path", "key",
+    "wall", "wall", "path", "door",
+  ];
+  let position = 0;
+  let hasKey = false;
+  $("#gameBoard").className = "game-board maze-board";
+
+  function drawMaze() {
+    $("#gameStatus").textContent = hasKey ? "You found the key. Reach the door." : "Find the key, then reach the door.";
+    $("#gameBoard").innerHTML = `
+      <div class="maze-grid">
+        ${cells.map((cell, index) => `<button class="maze-cell ${cell} ${index === position ? "player" : ""}" data-index="${index}" type="button">${index === position ? "You" : cell === "wall" ? "" : cell}</button>`).join("")}
+      </div>
+    `;
+    $$(".maze-cell").forEach((button) => {
+      button.addEventListener("click", () => {
+        const next = Number(button.dataset.index);
+        const rowDelta = Math.abs(Math.floor(next / 4) - Math.floor(position / 4));
+        const colDelta = Math.abs((next % 4) - (position % 4));
+        if (rowDelta + colDelta !== 1 || cells[next] === "wall") {
+          showToast("Choose a connected open square.");
+          return;
+        }
+        position = next;
+        if (cells[position] === "key") hasKey = true;
+        if (cells[position] === "door" && hasKey) {
+          $("#gameStatus").textContent = "Maze complete.";
+          completeGame("maze");
+          return;
+        }
+        drawMaze();
+      });
+    });
+  }
+
+  drawMaze();
+}
+
+function renderSequenceGame() {
+  const steps = shuffleItems(["Sun", "Moon", "Star", "Map"]).slice(0, 3);
+  let input = [];
+  $("#gameBoard").className = "game-board sequence-board";
+  $("#gameBoard").innerHTML = `
+    <div class="sequence-strip">${steps.map((step) => `<span>${escapeHtml(step)}</span>`).join("")}</div>
+    <p>Remember the order, then press the buttons below.</p>
+    <div class="choice-options">
+      ${shuffleItems(steps).map((step) => `<button class="secondary-action sequence-choice" data-step="${escapeHtml(step)}" type="button">${escapeHtml(step)}</button>`).join("")}
+    </div>
+  `;
+  reactionTimer = window.setTimeout(() => {
+    $(".sequence-strip").classList.add("hidden-sequence");
+    $("#gameStatus").textContent = "Now repeat the order.";
+  }, 1800);
+  $$(".sequence-choice").forEach((button) => {
+    button.addEventListener("click", () => {
+      input.push(button.dataset.step);
+      button.disabled = true;
+      if (input[input.length - 1] !== steps[input.length - 1]) {
+        showToast("Sequence reset.");
+        renderSequenceGame();
+        return;
+      }
+      if (input.length === steps.length) {
+        $("#gameStatus").textContent = "Sequence remembered.";
+        completeGame("sequence");
+      }
+    });
+  });
+}
+
+function renderFocusGame() {
+  const target = String(1 + Math.floor(Math.random() * 9));
+  const options = shuffleItems([target, target, "3", "5", "7", "8", "2", "6", "9"]).slice(0, 9);
+  if (!options.includes(target)) options[0] = target;
+  $("#gameBoard").className = "game-board focus-board";
+  $("#gameStatus").textContent = `Find every ${target}.`;
+  $("#gameBoard").innerHTML = `
+    <div class="focus-grid">
+      ${options.map((value, index) => `<button class="focus-cell" data-value="${value}" data-index="${index}" type="button">${value}</button>`).join("")}
+    </div>
+  `;
+  let remaining = options.filter((value) => value === target).length;
+  $$(".focus-cell").forEach((button) => {
+    button.addEventListener("click", () => {
+      if (button.dataset.value !== target) {
+        button.classList.add("wrong");
+        showToast("Keep scanning.");
+        return;
+      }
+      if (button.classList.contains("correct")) return;
+      button.classList.add("correct");
+      remaining -= 1;
+      if (remaining <= 0) {
+        $("#gameStatus").textContent = "Focus complete.";
+        completeGame("focus");
+      }
+    });
   });
 }
 
